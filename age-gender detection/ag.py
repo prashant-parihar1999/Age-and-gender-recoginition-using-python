@@ -2,6 +2,8 @@ import cv2
 import math
 import argparse
 
+#detect face
+
 def highlightFace(net, frame, conf_threshold=0.7):
     frameOpencvDnn=frame.copy()
     frameHeight=frameOpencvDnn.shape[0]
@@ -22,12 +24,13 @@ def highlightFace(net, frame, conf_threshold=0.7):
             cv2.rectangle(frameOpencvDnn, (x1,y1), (x2,y2), (0,250,0), int(round(frameHeight/120)), 8)
     return frameOpencvDnn,faceBoxes
 
-
+#this is for argument
 parser=argparse.ArgumentParser()
 parser.add_argument('--image')
 
 args=parser.parse_args()
 
+#this will detect age and gender
 faceProto="opencv_face_detector.pbtxt"
 faceModel="opencv_face_detector_uint8.pb"
 ageProto="age_deploy.prototxt"
